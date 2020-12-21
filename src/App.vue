@@ -5,10 +5,12 @@
         fixed
     >
       <v-toolbar-title>
-          Home
+          Movies Database
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-text-field
+          v-if="$route.path == '/'"
+          v-model="searchInput"
           append-icon="mdi-magnify"
           label="Search"
           single-line
@@ -17,7 +19,7 @@
     </v-app-bar>
     <v-main>
       <v-layout>
-        <router-view ></router-view>
+        <router-view :searchInput="searchInput"></router-view>
       </v-layout>
     </v-main>
   </v-app>
@@ -27,5 +29,10 @@
 
 export default {
   name: 'App',
+  data() {
+    return {
+      searchInput: '',
+    };
+  },
 };
 </script>

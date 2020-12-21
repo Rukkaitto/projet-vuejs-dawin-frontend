@@ -7,10 +7,10 @@
         </v-col>
         <v-col cols="12" sm="6">
           <v-card-title>
-            {{details.title}}
+            {{details.title}} ({{details.year}})
           </v-card-title>
           <v-card-subtitle>
-            {{details.producer.name}}, born in {{details.producer.birthDate}}, {{details.producer.nationality}}
+            {{details.producer && details.producer.name}}, born in {{details.producer && details.producer.birthDate}}, {{details.producer && details.producer.nationality}}
           </v-card-subtitle>
           <v-card-subtitle>
             {{details.genre}}, {{details.language}}

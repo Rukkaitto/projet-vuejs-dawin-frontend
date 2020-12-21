@@ -2,6 +2,7 @@
   <v-container>
     <v-form>
       <v-text-field v-model="form.title" label="Title"></v-text-field>
+      <v-text-field v-model="form.year" label="Release date" type="number"></v-text-field>
       <v-text-field v-model="form.genre" label="Genre"></v-text-field>
       <v-text-field v-model="form.language" label="Language"></v-text-field>
       Producer
@@ -23,6 +24,7 @@ export default {
     return {
       form: {
         title: '',
+        year: '',
         language: '',
         producer: {
           name: '',
