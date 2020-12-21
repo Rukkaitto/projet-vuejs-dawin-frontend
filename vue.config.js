@@ -1,5 +1,8 @@
 module.exports = {
-  devServer: {
-    progress: false
-  }
+  "devServer": {
+    "progress": false
+  },
+  "transpileDependencies": [
+    "vuetify"
+  ]
 }
