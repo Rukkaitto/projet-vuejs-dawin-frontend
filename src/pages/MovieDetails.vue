@@ -63,8 +63,7 @@ export default {
           .get(window.sharedData.apiUrl + this.$route.params.id)
           .then(result => {
             this.details = result.data;
-          })
-
+          });
     },
     goToEdit() {
       this.$router.push({path: `/movie/${this.$route.params.id}/edit`});

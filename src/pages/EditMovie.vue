@@ -1,12 +1,22 @@
 <template>
-  <v-container>
-
-  </v-container>
+  <MovieForm edit="true" @save-form="updateMovie($event)" submit-value="Save" card-title="Edit a movie"></MovieForm>
 </template>
 
 <script>
+import MovieForm from "@/components/MovieForm";
 export default {
-name: "EditMovie"
+  name: "EditMovie",
+  components: {MovieForm},
+  methods: {
+    updateMovie(form) {
+      this.$http.put(window.sharedData.apiUrl + this.$route.params.id, form)
+          .then(result => {
+            if(result.status === 200) {
+              this.$router.push({path: '/movie/' + this.$route.params.id});
+            }
+          });
+    },
+  },
 }
 </script>
 

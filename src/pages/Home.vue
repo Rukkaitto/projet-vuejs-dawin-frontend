@@ -1,12 +1,12 @@
 <template>
   <v-container fluid>
-
     <v-row>
       <v-col v-for="movie in searchResults" :key="movie._id" cols="12" sm="3">
         <MovieCard @fetch-data="fetchData" :id="movie._id" :title="movie.title" :poster-url="movie.posterUrl" :genre="movie.genre" :rating="movie.rating"></MovieCard>
       </v-col>
     </v-row>
     <v-btn
+        @click="gotoCreate"
         bottom
         right
         fixed
@@ -14,7 +14,7 @@
         large
         color="accent"
     >
-      <v-icon @click="gotoCreate">
+      <v-icon>
         mdi-plus
       </v-icon>
     </v-btn>
@@ -45,7 +45,7 @@
             .get(window.sharedData.apiUrl + 'all')
             .then(result => {
               this.movies = result.data;
-            })
+            });
       },
     },
     computed: {

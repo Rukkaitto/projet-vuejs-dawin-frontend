@@ -1,25 +1,12 @@
 <template>
-  <v-container>
-    <v-form>
-      <v-text-field v-model="form.title" label="Title"></v-text-field>
-      <v-text-field v-model="form.year" label="Release date" type="number"></v-text-field>
-      <v-text-field v-model="form.genre" label="Genre"></v-text-field>
-      <v-text-field v-model="form.language" label="Language"></v-text-field>
-      Producer
-      <v-container>
-        <v-text-field v-model="form.producer.name" label="Name"></v-text-field>
-        <v-text-field v-model="form.producer.nationality" label="Nationality"></v-text-field>
-        <v-text-field v-model="form.producer.birthDate" label="Birth date" type="number"></v-text-field>
-      </v-container>
-      <v-text-field v-model="form.posterUrl" label="Poster"></v-text-field>
-      <v-btn @click="createMovie">Save</v-btn>
-    </v-form>
-  </v-container>
+  <MovieForm @save-form="createMovie($event)" submit-value="Create" card-title="Create a new movie"></MovieForm>
 </template>
 
 <script>
+import MovieForm from "@/components/MovieForm";
 export default {
   name: "CreateMovie",
+  components: {MovieForm},
   data() {
     return {
       form: {
@@ -38,9 +25,8 @@ export default {
     };
   },
   methods: {
-    createMovie() {
-      console.log(this.form);
-      this.$http.post(window.sharedData.apiUrl, this.form)
+    createMovie(form) {
+      this.$http.post(window.sharedData.apiUrl, form)
           .then(result => {
             if(result.status === 200) {
               this.$router.push({path: '/'});

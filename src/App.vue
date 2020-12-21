@@ -5,14 +5,14 @@
         fixed
     >
       <v-toolbar-title>
-          Movies Database
+          Movies
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-text-field
           v-if="$route.path == '/'"
           v-model="searchInput"
           append-icon="mdi-magnify"
-          label="Search"
+          label="Search for movies, producers, release dates..."
           single-line
           hide-details
       ></v-text-field>
