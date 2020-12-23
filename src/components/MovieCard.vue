@@ -1,8 +1,10 @@
 <template>
   <v-card>
-    <v-img
-        :src="posterUrl"
-    ></v-img>
+    <a @click="goToDetails">
+      <v-img
+          :src="posterUrl"
+      ></v-img>
+    </a>
         <v-card-title>
           {{title}}
         </v-card-title>
@@ -18,6 +20,7 @@
             length="5"
             half-increments
             size="20"
+            readonly
         ></v-rating>
       </v-row>
 

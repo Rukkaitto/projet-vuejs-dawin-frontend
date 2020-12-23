@@ -18,6 +18,7 @@
 
           <v-card-text>
             <v-rating
+                v-model="rating"
                 :value="parseFloat(details.rating)"
                 background-color="white"
                 color="orange"
@@ -51,7 +52,8 @@ export default {
   name: "MovieDetails",
   data() {
     return {
-      details: [],
+      details: {},
+      rating: 0,
     }
   },
   created() {
@@ -63,11 +65,20 @@ export default {
           .get(window.sharedData.apiUrl + this.$route.params.id)
           .then(result => {
             this.details = result.data;
+            this.rating = result.data.rating;
           });
     },
     goToEdit() {
       this.$router.push({path: `/movie/${this.$route.params.id}/edit`});
     },
+  },
+  watch: {
+    rating() {
+      this.$http
+          .put(`${window.sharedData.apiUrl}${this.$route.params.id}/rate`, {rating: this.rating})
+          .then(result => console.log(result))
+          .catch(error => console.log(error));
+    }
   },
 }
 </script>
