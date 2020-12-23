@@ -89,7 +89,8 @@ export default {
   },
   computed: {
     formIsValid() {
-      return Object.values(this.form).every(field => field !== '');
+      return  Object.values(this.form).every(field => field !== '') &&
+              Object.values(this.form.director).every(field => field !== '');
     }
   }
 }
