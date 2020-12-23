@@ -20,8 +20,8 @@
               <v-text-field v-model="form.director.birthDate" label="Birth date" type="number"></v-text-field>
             </v-card-text>
           </v-card>
-          <v-text-field v-model="form.posterUrl" label="Poster URL"></v-text-field>
-          <v-btn @click="saveForm">{{submitValue}}</v-btn>
+          <v-text-field v-model="form.posterUrl" label="Poster URL" append-icon="mdi-download" @click:append="fetchPosterUrl"></v-text-field>
+          <v-btn @click="saveForm" :disabled="!formIsValid">{{submitValue}}</v-btn>
         </v-form>
       </v-card-text>
     </v-card>
@@ -67,6 +67,17 @@ export default {
           })
           .catch(error => console.log(error));
     },
+    fetchPosterUrl() {
+      this.$http
+          .get(`http://www.omdbapi.com/?i=tt3896198&apikey=${window.sharedData.omdbApiKey}&s=${this.form.title}`)
+          .then(result => {
+            this.form.posterUrl = result.data["Search"][0]["Poster"];
+          })
+          .catch(error => {
+            console.log(error);
+            this.form.posterUrl = "No poster found for this title.";
+          });
+    },
     uploadPoster() {
       let formData = new FormData()
       formData.append('poster', this.file)
@@ -76,6 +87,11 @@ export default {
           });
     },
   },
+  computed: {
+    formIsValid() {
+      return Object.values(this.form).every(field => field !== '');
+    }
+  }
 }
 </script>
 

@@ -4,9 +4,11 @@
         app
         fixed
     >
-      <v-toolbar-title>
+      <a @click="goToHome">
+        <v-toolbar-title>
           Movies
-      </v-toolbar-title>
+        </v-toolbar-title>
+      </a>
       <v-spacer></v-spacer>
       <v-text-field
           v-if="$route.path == '/'"
@@ -33,6 +35,11 @@ export default {
     return {
       searchInput: '',
     };
+  },
+  methods: {
+    goToHome() {
+      this.$router.push({path: '/'});
+    }
   },
 };
 </script>
