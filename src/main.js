@@ -15,6 +15,7 @@ Vue.use(VueRouter);
 window.sharedData = {
   apiUrl: 'http://localhost:3000/api/movies/',
   omdbApiKey: 'a851d74f',
+  title: 'Movies Database',
 }
 
 new Vue({

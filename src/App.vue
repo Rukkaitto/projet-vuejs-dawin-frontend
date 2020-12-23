@@ -36,6 +36,9 @@ export default {
       searchInput: '',
     };
   },
+  created() {
+    document.title = window.sharedData.title;
+  },
   methods: {
     goToHome() {
       this.$router.push({path: '/'});
