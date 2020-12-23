@@ -7,25 +7,9 @@ import MovieForm from "@/components/MovieForm";
 export default {
   name: "CreateMovie",
   components: {MovieForm},
-  data() {
-    return {
-      form: {
-        title: '',
-        year: '',
-        language: '',
-        producer: {
-          name: '',
-          nationality: '',
-          birthDate: '',
-        },
-        genre: '',
-        rating: 0,
-        posterUrl: '',
-      }
-    };
-  },
   methods: {
     createMovie(form) {
+      console.log(form);
       this.$http.post(window.sharedData.apiUrl, form)
           .then(result => {
             if(result.status === 200) {
@@ -33,9 +17,6 @@ export default {
             }
           });
     },
-    fillFields() {
-
-    }
   }
 }
 </script>

@@ -54,7 +54,7 @@
         return this.movies.filter(movie => {
           return  movie.title.toLowerCase().includes(lowerSearchInput) ||
                   movie.year.toLowerCase().includes(lowerSearchInput) ||
-                  movie.producer.name.toLowerCase().includes(lowerSearchInput)
+                  movie.director.name.toLowerCase().includes(lowerSearchInput)
         });
       },
     },

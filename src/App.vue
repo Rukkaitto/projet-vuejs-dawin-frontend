@@ -12,7 +12,7 @@
           v-if="$route.path == '/'"
           v-model="searchInput"
           append-icon="mdi-magnify"
-          label="Search for movies, producers, release dates..."
+          label="Search for movies, directors, release dates..."
           single-line
           hide-details
       ></v-text-field>

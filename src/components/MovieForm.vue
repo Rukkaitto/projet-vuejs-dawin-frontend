@@ -12,15 +12,15 @@
           <v-text-field v-model="form.language" label="Language"></v-text-field>
           <v-card>
             <v-card-title>
-              Producer
+              Director
             </v-card-title>
             <v-card-text>
-              <v-text-field v-model="form.producer.name" label="Name"></v-text-field>
-              <v-text-field v-model="form.producer.nationality" label="Nationality"></v-text-field>
-              <v-text-field v-model="form.producer.birthDate" label="Birth date" type="number"></v-text-field>
+              <v-text-field v-model="form.director.name" label="Name"></v-text-field>
+              <v-text-field v-model="form.director.nationality" label="Nationality"></v-text-field>
+              <v-text-field v-model="form.director.birthDate" label="Birth date" type="number"></v-text-field>
             </v-card-text>
           </v-card>
-          <v-text-field v-model="form.posterUrl" label="Poster"></v-text-field>
+          <v-text-field v-model="form.posterUrl" label="Poster URL"></v-text-field>
           <v-btn @click="saveForm">{{submitValue}}</v-btn>
         </v-form>
       </v-card-text>
@@ -38,7 +38,7 @@ export default {
         title: '',
         year: '',
         language: '',
-        producer: {
+        director: {
           name: '',
           nationality: '',
           birthDate: '',
@@ -46,6 +46,7 @@ export default {
         genre: '',
         posterUrl: '',
       },
+      //file: null,
     };
   },
   created() {
@@ -55,6 +56,7 @@ export default {
   },
   methods: {
     saveForm() {
+      //this.uploadPoster();
       this.$emit('save-form', this.form);
     },
     fetchFields() {
@@ -64,6 +66,14 @@ export default {
             this.form = result.data;
           })
           .catch(error => console.log(error));
+    },
+    uploadPoster() {
+      let formData = new FormData()
+      formData.append('poster', this.file)
+      this.$http.post('http://localhost:3000/upload', formData)
+          .then(result => {
+            this.form.posterUrl = 'http://localhost:3000/' + result.data.posterUrl;
+          });
     },
   },
 }
