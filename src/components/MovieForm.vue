@@ -20,7 +20,15 @@
               <v-text-field v-model="form.director.birthDate" label="Birth date" type="number"></v-text-field>
             </v-card-text>
           </v-card>
-          <v-text-field v-model="form.posterUrl" label="Poster URL" append-icon="mdi-download" @click:append="fetchPosterUrl"></v-text-field>
+          <input @change="upload($event)" type="file" ref="file" style="display: none">
+          <v-text-field
+              v-model="form.posterUrl"
+              label="Poster URL"
+              append-icon="mdi-download"
+              append-outer-icon="mdi-paperclip"
+              @click:append="fetchPosterUrl"
+              @click:append-outer="$refs.file.click()"
+          ></v-text-field>
           <v-btn @click="saveForm" :disabled="!formIsValid">{{submitValue}}</v-btn>
         </v-form>
       </v-card-text>
@@ -46,7 +54,7 @@ export default {
         genre: '',
         posterUrl: '',
       },
-      //file: null,
+      file: null,
     };
   },
   created() {
@@ -56,7 +64,6 @@ export default {
   },
   methods: {
     saveForm() {
-      //this.uploadPoster();
       this.$emit('save-form', this.form);
     },
     fetchFields() {
@@ -78,21 +85,21 @@ export default {
             this.form.posterUrl = "No poster found for this title.";
           });
     },
-    uploadPoster() {
+    upload(e) {
       let formData = new FormData()
-      formData.append('poster', this.file)
+      formData.append('poster', e.target.files[0])
       this.$http.post('http://localhost:3000/upload', formData)
           .then(result => {
             this.form.posterUrl = 'http://localhost:3000/' + result.data.posterUrl;
           });
-    },
+    }
   },
   computed: {
     formIsValid() {
       return  Object.values(this.form).every(field => field !== '') &&
               Object.values(this.form.director).every(field => field !== '');
     }
-  }
+  },
 }
 </script>
 
