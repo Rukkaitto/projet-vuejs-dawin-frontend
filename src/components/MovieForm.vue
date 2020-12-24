@@ -24,7 +24,7 @@
           <v-text-field
               v-model="form.posterUrl"
               label="Poster URL"
-              append-icon="mdi-download"
+              append-icon="mdi-api"
               append-outer-icon="mdi-paperclip"
               @click:append="fetchPosterUrl"
               @click:append-outer="$refs.file.click()"
