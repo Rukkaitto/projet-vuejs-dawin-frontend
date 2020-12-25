@@ -54,6 +54,7 @@ export default {
     return {
       details: {},
       rating: 0,
+      success: false,
     }
   },
   created() {
