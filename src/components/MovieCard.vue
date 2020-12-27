@@ -61,13 +61,7 @@ export default {
     },
     // Sends ajax delete call to delete movie from database
     deleteMovie() {
-      this.$http
-          .delete(window.sharedData.apiUrl + this.id)
-          .then((result) => {
-            if(result.status === 200) {
-              this.$emit('fetch-data');
-            }
-          })
+      this.$emit('show-dialog', this.id);
     }
   },
 }
