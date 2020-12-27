@@ -58,14 +58,17 @@ export default {
     };
   },
   created() {
+    // Fetches all fields if we are editing a movie
     if(this.edit) {
       this.fetchFields();
     }
   },
   methods: {
+    // Sends save-form event with form object to either CreateMovie or EditMovie
     saveForm() {
       this.$emit('save-form', this.form);
     },
+    // Gets all fields from api
     fetchFields() {
       this.$http
           .get(window.sharedData.apiUrl + this.$route.params.id)
@@ -74,6 +77,7 @@ export default {
           })
           .catch(error => console.log(error));
     },
+    // Fetches the poster URL from OMDb database
     fetchPosterUrl() {
       this.$http
           .get(`http://www.omdbapi.com/?i=tt3896198&apikey=${window.sharedData.omdbApiKey}&s=${this.form.title}`)
@@ -85,6 +89,7 @@ export default {
             this.form.posterUrl = "No poster found for this title.";
           });
     },
+    // Uploads image file to server and puts the URI in the posterUrl field
     upload(e) {
       let formData = new FormData()
       formData.append('poster', e.target.files[0])
@@ -95,6 +100,7 @@ export default {
     }
   },
   computed: {
+    // Checks if every field is filled
     formIsValid() {
       return  Object.values(this.form).every(field => field !== '') &&
               Object.values(this.form.director).every(field => field !== '');

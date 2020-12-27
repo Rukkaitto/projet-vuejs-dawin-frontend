@@ -8,8 +8,8 @@ export default {
   name: "CreateMovie",
   components: {MovieForm},
   methods: {
+    // Sends a CREATE request to the API to create a new movie
     createMovie(form) {
-      console.log(form);
       this.$http.post(window.sharedData.apiUrl, form)
           .then(result => {
             if(result.status === 200) {

@@ -12,6 +12,7 @@ Vue.config.productionTip = false
 Vue.prototype.$http = axios
 Vue.use(VueRouter);
 
+// Constants shared between all components
 window.sharedData = {
   apiUrl: 'http://localhost:3000/api/movies/',
   omdbApiKey: 'a851d74f',

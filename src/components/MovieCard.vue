@@ -55,9 +55,11 @@ export default {
     };
   },
   methods: {
+    // Changes URL to /movie/:id
     goToDetails() {
       this.$router.push({path: `/movie/${this.id}`});
     },
+    // Sends ajax delete call to delete movie from database
     deleteMovie() {
       this.$http
           .delete(window.sharedData.apiUrl + this.id)

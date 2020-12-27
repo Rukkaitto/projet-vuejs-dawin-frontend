@@ -46,6 +46,7 @@ export default {
     document.title = window.sharedData.title;
   },
   methods: {
+    // Changes URL to /
     goToHome() {
       this.$router.push({path: '/'});
     }

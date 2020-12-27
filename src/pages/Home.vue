@@ -34,12 +34,15 @@
       }
     },
     created() {
+      // Fetch all movies
       this.fetchData();
     },
     methods: {
+      // Changes URL to /movie/new
       gotoCreate() {
         this.$router.push({path: '/movie/new'});
       },
+      // Sends a GET request to the API to get all movies
       fetchData() {
         this.$http
             .get(window.sharedData.apiUrl + 'all')
@@ -49,6 +52,7 @@
       },
     },
     computed: {
+      // Returns a list of movies, filtered by title, director, and release date
       searchResults() {
         const lowerSearchInput = this.searchInput.toLowerCase();
         return this.movies.filter(movie => {

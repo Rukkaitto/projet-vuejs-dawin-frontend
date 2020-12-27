@@ -58,9 +58,11 @@ export default {
     }
   },
   created() {
+    // Get all details of the current movie
     this.fetchData();
   },
   methods: {
+    // Sends a GET request to the API to get the movie's details
     fetchData() {
       this.$http
           .get(window.sharedData.apiUrl + this.$route.params.id)
@@ -69,11 +71,13 @@ export default {
             this.rating = result.data.rating;
           });
     },
+    // Changes URL to /movie/:id/edit
     goToEdit() {
       this.$router.push({path: `/movie/${this.$route.params.id}/edit`});
     },
   },
   watch: {
+    // When rating changes (i.e. the rating component is clicked), sends the rating to the API
     rating() {
       this.$http
           .put(`${window.sharedData.apiUrl}${this.$route.params.id}/rate`, {rating: this.rating})

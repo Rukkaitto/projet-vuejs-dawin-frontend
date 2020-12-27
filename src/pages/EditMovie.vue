@@ -8,6 +8,7 @@ export default {
   name: "EditMovie",
   components: {MovieForm},
   methods: {
+    // Sends a PUT request to the API to update a movie
     updateMovie(form) {
       this.$http.put(window.sharedData.apiUrl + this.$route.params.id, form)
           .then(result => {
