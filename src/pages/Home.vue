@@ -62,11 +62,10 @@
             .delete(window.sharedData.apiUrl + id)
             .then((result) => {
               if(result.status === 200) {
-                this.$emit('fetch-data');
+                this.dialog = false;
+                this.fetchData();
               }
             })
-        this.dialog = false;
-        this.fetchData();
       },
       showDialog(id) {
         this.dialog = true;
