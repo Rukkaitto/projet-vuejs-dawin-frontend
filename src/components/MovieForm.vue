@@ -79,15 +79,15 @@ export default {
     },
     // Fetches the poster URL from OMDb database
     fetchPosterUrl() {
-      this.$http
-          .get(`http://www.omdbapi.com/?i=tt3896198&apikey=${window.sharedData.omdbApiKey}&s=${this.form.title}`)
+      this.$http.get(`${window.sharedData.theMovieDbApiUrl}${window.sharedData.theMovieDbApiParams}${this.form.title}`)
           .then(result => {
-            this.form.posterUrl = result.data["Search"][0]["Poster"];
+            console.log(result.data);
+            this.form.posterUrl = window.sharedData.theMovieDbImageUrl + result.data['results'][0]['poster_path'];
           })
           .catch(error => {
-            console.log(error);
+            console.log(error)
             this.form.posterUrl = "No poster found for this title.";
-          });
+          })
     },
     // Uploads image file to server and puts the URI in the posterUrl field
     upload(e) {
